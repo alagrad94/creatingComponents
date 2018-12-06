@@ -73,25 +73,29 @@ const students = [
     }
 ]
 
-const h1 = (title, style) => {
-    return `<h1 class="${style}">${title}</h1>`
-}
+const htmlElement = (element, style, title) => {
 
-const section = (title, style) => {
-    return `<section class="bordered dashed ${style}">${title}</section>`
+    return `<${element} class = "${style}">${title}</${element}>`
 }
+// const h1 = (title, style) => {
+//     return `<h1 class="${style}">${title}</h1>`
+// }
 
-const aside = (title, style) => {
-    return `<aside class="${style}">${title}</aside>`
-}
+// const section = (title, style) => {
+//     return `<section class="bordered dashed ${style}">${title}</section>`
+// }
+
+// const aside = (title, style) => {
+//     return `<aside class="${style}">${title}</aside>`
+// }
 
 const student = (name, className, info, grade) => `
     <div id="student">
-        ${h1(name, `xx-large ${grade}`)}
-        ${section(className, "section--padded")}
-        ${aside(info, "pushRight")}
-    </div>
-`
+        ${htmlElement("h1", "xx-large " + grade, name)}
+        ${htmlElement("section", "bordered dashed section--padded", className)}
+        ${htmlElement("aside", "pushRight", info)}
+    </div>`
+    
 const container = document.querySelector("#container")
 
 for (s of students) {
@@ -102,5 +106,6 @@ for (s of students) {
         studentComponent = student(s.name, s.class, s.info, "failing")
     }
     container.innerHTML += studentComponent
+    console.log(studentComponent)
 }
 
